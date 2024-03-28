@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\2079555\\Desktop\\TP4\\TP4.csproj": {}
+    "C:\\Users\\2079555\\Desktop\\TP3repo\\TP3project\\TP3\\TP4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\2079555\\Desktop\\TP4\\TP4.csproj": {
+    "C:\\Users\\2079555\\Desktop\\TP3repo\\TP3project\\TP3\\TP4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\2079555\\Desktop\\TP4\\TP4.csproj",
+        "projectUniqueName": "C:\\Users\\2079555\\Desktop\\TP3repo\\TP3project\\TP3\\TP4.csproj",
         "projectName": "TP4",
-        "projectPath": "C:\\Users\\2079555\\Desktop\\TP4\\TP4.csproj",
+        "projectPath": "C:\\Users\\2079555\\Desktop\\TP3repo\\TP3project\\TP3\\TP4.csproj",
         "packagesPath": "C:\\Users\\2079555\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\2079555\\Desktop\\TP4\\obj\\",
+        "outputPath": "C:\\Users\\2079555\\Desktop\\TP3repo\\TP3project\\TP3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\2079555\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.314\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.307\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -94,19 +94,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.28, 6.0.28]"
+              "version": "[6.0.21, 6.0.21]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.28, 6.0.28]"
+              "version": "[6.0.21, 6.0.21]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.28, 6.0.28]"
+              "version": "[6.0.21, 6.0.21]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.28, 6.0.28]"
+              "version": "[6.0.21, 6.0.21]"
             }
           ],
           "frameworkReferences": {
@@ -117,7 +117,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.314\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     }

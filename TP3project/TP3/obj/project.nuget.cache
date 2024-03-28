@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4sQs2hTKYCLwQH1RLXmviaaK0lZRQGodQQcuTlx8kPzhhz9PTYGy0urDHXO06DSvmg7Pi69iW7RZBWVfG0sSWg==",
+  "dgSpecHash": "NaQ1o51pZ1Oj43XdyXKLKV6CKprb1S+7TqLXZwJEjUDRlniB31RkCOwALeUG9WK6nXPv933N9oXBhJ6iTFQrVA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\2079555\\Desktop\\TP4\\TP4.csproj",
+  "projectFilePath": "C:\\Users\\2079555\\Desktop\\TP3repo\\TP3project\\TP3\\TP4.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\2079555\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
     "C:\\Users\\2079555\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
@@ -241,10 +241,10 @@
     "C:\\Users\\2079555\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\2079555\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\2079555\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512",
-    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.28\\microsoft.netcore.app.host.win-x64.6.0.28.nupkg.sha512"
+    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.21\\microsoft.windowsdesktop.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.21\\microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.21\\microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\2079555\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.21\\microsoft.netcore.app.host.win-x64.6.0.21.nupkg.sha512"
   ],
   "logs": []
 }
