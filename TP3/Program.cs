@@ -56,7 +56,7 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateIssuer = true,
         ValidAudience = "https://localhost:4200", // Client-Side -> HTTP
-        ValidIssuer = "https://localhost:7182", // Server-Side -> HTTPS
+        ValidIssuer = "https://localhost:7165", // Server-Side -> HTTPS
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
         .GetBytes("LooOOongue Phrase SiNoN Ca ne Marchera PaAaAAAaAas !"))
 };

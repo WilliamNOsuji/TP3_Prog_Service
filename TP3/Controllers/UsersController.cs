@@ -61,7 +61,7 @@ namespace TP4.Controllers
                 SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
                     .GetBytes("LooOOongue Phrase SiNoN Ca ne Marchera PaAaAAAaAas !"));
                 JwtSecurityToken token = new JwtSecurityToken(
-                    issuer: "https://localhost:7128",
+                    issuer: "https://localhost:7165",
                     audience: "https://localhost:4200",
                     claims: authClaims,
                     expires: DateTime.Now.AddMinutes(30),

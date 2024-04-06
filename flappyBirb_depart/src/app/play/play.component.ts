@@ -56,12 +56,11 @@ export class PlayComponent implements OnInit, OnDestroy{
     this.scoreTimeValue = sessionStorage.getItem("time");
     this.scoreValue = sessionStorage.getItem("score");
     //const authToken = sessionStorage.getItem('token')
-    let authToken = sessionStorage.getItem('token')
     // Construct a new Score object
       let httpOptions = {
         headers : new HttpHeaders({
           'Content-Type' : 'application/json',
-          'Authorization' : 'Bearer ' + authToken
+          'Authorization' : 'Bearer ' + sessionStorage.getItem('token')
         })
       }
       console.log(httpOptions)
@@ -76,7 +75,6 @@ export class PlayComponent implements OnInit, OnDestroy{
           parseInt(this.scoreValue),
           this.scoreIsPublic
         );
-        console.log(newScore)
     
         let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore,httpOptions) )
         console.log("Score sent successfully:", response);

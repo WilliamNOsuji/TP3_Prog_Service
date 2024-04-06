@@ -99,33 +99,33 @@ namespace TP4.Controllers
             {
                 return Problem("Entity set 'TP4Context.Score'  is null.");
             }
+
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             User? user = await _context.Users.FindAsync(userId);
 
             if (user != null)
             {
-                score.User = user;
-                user.Scores.Add(score);
-                //Score newScore = new Score
-                //{
-                //    Pseudo = user.UserName, // Assuming Pseudo is also passed from Angular
-                //    Date = DateOnly.now, // Set the date to the current UTC time
-                //    Temps = score.Temps,
-                //    ScoreValue = score.ScoreValue,
-                //    IsPublic = score.IsPublic,
-                //};
+                //score.User = user;
+                //user.Scores.Add(score);
+                Score newScore = new Score
+                {
+                    Pseudo = user.UserName, // Assuming Pseudo is also passed from Angular
+                    Date = DateTime.Now.ToString(), // Set the date to the current UTC time
+                    Temps = score.Temps,
+                    ScoreValue = score.ScoreValue,
+                    IsPublic = score.IsPublic,
+                };
 
                 // Associate the Score instance with the user
-                //newScore.User = user;
+                newScore.User = user;
 
                 // Add the Score instance to the user's Scores collection
-                //user.Scores.Add(newScore);
+                user.Scores.Add(newScore);
 
                 // Add the Score instance to the database context
-                //_context.Score.Add(newScore);
+                _context.Score.Add(newScore);
 
-
-                _context.Score.Add(score);
+                //_context.Score.Add(score);
                 await _context.SaveChangesAsync();
                 return Ok(score);
             }

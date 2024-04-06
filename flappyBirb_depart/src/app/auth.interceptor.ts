@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         'Content-Type' : 'application/json',
-        'Authorization' : 'Bearer ' + sessionStorage.getItem('authToken')
+        'Authorization' : 'Bearer ' + sessionStorage.getItem('token')
       }
     })
     return next.handle(request);
