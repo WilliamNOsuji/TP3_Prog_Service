@@ -17,8 +17,6 @@ namespace TP4.Controllers
     {
         readonly UserManager<User> UserManager;
 
-        private readonly TP4Context _context;
-
         public UsersController(UserManager<User> userManager)
         {
             this.UserManager = userManager;
@@ -29,7 +27,8 @@ namespace TP4.Controllers
         {
             if(register.Password != register.PasswordConfirm)
             {
-                return StatusCode(StatusCodes.Status400BadRequest, new { Message = "Les deux mots de passe spécifiés sont différents." });
+                return StatusCode(StatusCodes.Status400BadRequest, 
+                    new { Message = "Les deux mots de passe spécifiés sont différents." });
             }
 
             User user = new User()
@@ -40,9 +39,10 @@ namespace TP4.Controllers
             IdentityResult identityResult = await this.UserManager.CreateAsync(user, register.Password);
             if(!identityResult.Succeeded)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "Lac création de l'utilisateur a échoué." });
+                return StatusCode(StatusCodes.Status500InternalServerError, 
+                    new { Message = "La création de l'utilisateur a échoué." });
             }
-            return Ok();
+            return Ok(new { Message = "Inscription reussie !"});
         }
 
         [HttpPost]
@@ -59,7 +59,7 @@ namespace TP4.Controllers
                 }
                 authClaims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
                 SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
-                    .GetBytes("LooOOongue Phrase SiNoN Ca ne Marchera PaAaAAAaAas"));
+                    .GetBytes("LooOOongue Phrase SiNoN Ca ne Marchera PaAaAAAaAas !"));
                 JwtSecurityToken token = new JwtSecurityToken(
                     issuer: "https://localhost:7128",
                     audience: "https://localhost:4200",

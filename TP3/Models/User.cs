@@ -5,6 +5,6 @@ namespace TP4.Models
 {
     public class User : IdentityUser
     {
-        public virtual List<Score> Scores { get; set; } = null;
+        public virtual List<Score> Scores { get; set; } = null!;
     }
 }

@@ -8,18 +8,17 @@ namespace TP4.Models
         [Required]
         public int Id { get; set; }
 
+        public string Pseudo { get; set; }
+
+        public string Date { get; set; }
+
         public float Temps { get; set; }
 
-        public DateTime Date { get; set; }
+        public int ScoreValue { get; set; }
 
-        public bool IsVisible { get; set; }
+        public bool IsPublic { get; set; }
 
         [JsonIgnore]
         public virtual User? User { get; set; }
-
-        public Score()
-        {
-
-        }
     }
 }

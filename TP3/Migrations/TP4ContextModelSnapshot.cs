@@ -163,11 +163,19 @@ namespace TP4.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsVisible")
+                    b.Property<bool>("IsPublic")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Pseudo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ScoreValue")
+                        .HasColumnType("int");
 
                     b.Property<float>("Temps")
                         .HasColumnType("real");

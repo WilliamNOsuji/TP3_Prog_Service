@@ -11,11 +11,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<TP4Context>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("TP4Context") ?? throw new InvalidOperationException("Connection string 'TP4Context' not found."));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TP4Context"));
     options.UseLazyLoadingProxies();
 });
 
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<TP4Context>();
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequiredLength = 5;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+});
 
 // Add services to the container.
 
@@ -49,8 +57,9 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = true,
         ValidAudience = "https://localhost:4200", // Client-Side -> HTTP
         ValidIssuer = "https://localhost:7182", // Server-Side -> HTTPS
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Retardation Simulator"))
-    };
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+        .GetBytes("LooOOongue Phrase SiNoN Ca ne Marchera PaAaAAAaAas !"))
+};
 });
 
 var app = builder.Build();

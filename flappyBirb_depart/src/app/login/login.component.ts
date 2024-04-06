@@ -17,7 +17,7 @@ import { LoginDTO } from '../models/loginDTO';
 export class LoginComponent implements OnInit {
   domain : string = "https://localhost:7165/";
   hide = true;
-
+ 
   registerUsername : string = "";
   registerEmail : string = "";
   registerPassword : string = "";
@@ -37,9 +37,10 @@ export class LoginComponent implements OnInit {
       this.loginPassword
     )
     const response = await lastValueFrom(this.http.post<any>(this.domain + "api/Users/Login", loginDTO));
-      
+    console.log(response)
     // Store token in session storage
     sessionStorage.setItem('token', response.token);
+    console.log("User has Logged In Successfully !!!")
     console.log("This is the assigned Token (Without the Expiration DateTime): " + sessionStorage.getItem("token")?.toString())
 
     // Redirection si la connexion a réussi :
@@ -55,7 +56,6 @@ export class LoginComponent implements OnInit {
     );
     let x = await lastValueFrom(this.http.post<RegisterDTO>( this.domain + "api/Users/Register", registerDTO));
     console.log(x)
-    //console.log("User : "+ x.username + "With the Password : " + x.password + " and the Email : " + x.email)
-    //console.log("Has been Registered Successfully !!!")
+    console.log("User has been Registered Successfully !!!")
   }
 }
