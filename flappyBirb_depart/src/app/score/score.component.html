@@ -16,7 +16,7 @@
                 </tr>
                 <tr *ngFor="let s of myScores">
                     <td>{{s.scoreValue | round_00}}</td>
-                    <td>{{s.timeInSeconds}}</td>
+                    <td>{{s.temps}}</td>
                     <td>{{s.date | date:'MMM d, yyyy'}}</td>
                     <td (click)="changeScoreVisibility(s)"><mat-icon>{{s.isPublic ? 'visibility' : 'visibility_off'}}</mat-icon></td>
                 </tr>
@@ -43,7 +43,7 @@
                 <tr *ngFor="let s of publicScores">
                     <td>{{s.pseudo}}</td>
                     <td>{{s.scoreValue | round_00}}</td>
-                    <td>{{s.timeInSeconds}}</td>
+                    <td>{{s.temps}}</td>
                     <td>{{s.date | date:'MMM d, yyyy'}}</td>
                 </tr>
             </table>

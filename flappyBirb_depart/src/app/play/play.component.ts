@@ -71,11 +71,11 @@ export class PlayComponent implements OnInit, OnDestroy{
           0,
           this.scorePseudo,
           this.scoreDate,
-          this.scoreTimeValue,
+          parseFloat(this.scoreTimeValue),
           parseInt(this.scoreValue),
           this.scoreIsPublic
         );
-    
+        console.log(newScore)
         let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore,httpOptions) )
         console.log("Score sent successfully:", response);
       
