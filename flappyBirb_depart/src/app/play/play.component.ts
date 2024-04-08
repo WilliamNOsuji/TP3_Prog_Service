@@ -56,17 +56,7 @@ export class PlayComponent implements OnInit, OnDestroy{
     // La date sera choisie par le serveur
     this.scoreTimeValue = sessionStorage.getItem("time");
     this.scoreValue = sessionStorage.getItem("score");
-    //const authToken = sessionStorage.getItem('token')
-    // Construct a new Score object
-      let httpOptions = {
-        headers : new HttpHeaders({
-          'Content-Type' : 'application/json',
-          'Authorization' : 'Bearer ' + sessionStorage.getItem('token')
-        })
-      }
-      console.log(httpOptions)
-      console.log(this.scoreTimeValue)
-      console.log(this.scoreValue)
+
       if(this.scoreTimeValue != null && this.scoreValue != null){
         let newScore = new Score(
           0,
@@ -78,7 +68,7 @@ export class PlayComponent implements OnInit, OnDestroy{
         );
         console.log(newScore)
         try {
-          let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore,httpOptions) );
+          let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore) );
           console.log("Score sent successfully:", response);
         } catch (error) {
           // Handle error here

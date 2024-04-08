@@ -19,11 +19,11 @@ namespace TP4.Controllers
     [Authorize]
     public class ScoresController : ControllerBase
     {
-        private readonly TP4Context _context;
+        private readonly ScoreService _scoreService;
 
-        public ScoresController(TP4Context context)
+        public ScoresController(ScoreService scoreService)
         {
-            _context = context;
+            _scoreService = scoreService;
         }
 
         // GET: api/Scores
@@ -31,40 +31,24 @@ namespace TP4.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Score>>> GetPublicScores()
         {
-          if (_context.Score == null)
-          {
-              return NotFound();
-          }
-            var top10Scores = await _context.Score
-                                     .Where(s => s.IsPublic == true)
-                                     .ToListAsync();
-
-            if (top10Scores == null || top10Scores.Count == 0)
-            {
-                return NotFound();
-            }
-
-            return top10Scores;
+          IEnumerable<Score>? publicScores = await _scoreService.GetAllPublicScores();
+          if( publicScores == null ) return NotFound();
+          return Ok(publicScores);
         }
 
         // GET: api/Scores
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Score>>> GetMyScores()
         {
-            if (_context.Score == null)
-            {
-                return NotFound();
-            }
-            
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            User? user = await _context.Users.FindAsync(userId);
-            if (user != null)
+            var scores = await _scoreService.GetMyScores(userId);
+
+            if (scores == null)
             {
-                return user.Scores;
+                return BadRequest("Utilisateur non trouvé.");
             }
 
-            return StatusCode(StatusCodes.Status400BadRequest, 
-                new {Message = "Utilisateur non trouvé."});
+            return Ok(scores);
         }
 
         // PUT: api/Scores/5
@@ -77,25 +61,14 @@ namespace TP4.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(score).State = EntityState.Modified;
-
-            try
+            Score? updatedScore = await _scoreService.EditScore(id, score);
+            if (updatedScore == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ScoreExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new { Message = "Le Score a ete supprime ou modifie. Veillez reesayer" });
             }
 
-            return NoContent();
+            return Ok(updatedScore);
         }
 
         // POST: api/Scores
@@ -103,43 +76,29 @@ namespace TP4.Controllers
         [HttpPost]
         public async Task<ActionResult<Score>> PostScore (Score score)
         {
-            if (_context.Score == null)
+            if (_scoreService.IsContextNull() == null)
             {
                 return Problem("Entity set 'TP4Context.Score'  is null.");
             }
 
+            if (score == null) return null;
+
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            User? user = await _context.Users.FindAsync(userId);
 
-            if (user != null)
+            if(userId == null)
             {
-                //score.User = user;
-                //user.Scores.Add(score);
-                Score newScore = new Score
-                {
-                    Pseudo = user.UserName, // Assuming Pseudo is also passed from Angular
-                    Date = DateTime.Now.ToString(), // Set the date to the current UTC time
-                    Temps = score.Temps,
-                    ScoreValue = score.ScoreValue,
-                    IsPublic = score.IsPublic,
-                };
-
-                // Associate the Score instance with the user
-                newScore.User = user;
-
-                // Add the Score instance to the user's Scores collection
-                user.Scores.Add(newScore);
-
-                // Add the Score instance to the database context
-                _context.Score.Add(newScore);
-
-                //_context.Score.Add(score);
-                await _context.SaveChangesAsync();
-                return Ok(score);
+                return StatusCode(StatusCodes.Status400BadRequest,
+                new { Message = "Utilisateur non trouvé." });
             }
 
-            return StatusCode(StatusCodes.Status400BadRequest, 
-                new { Message = "Utilisateur non trouvé." });
+            Score? newScore = await _scoreService.Add(score, userId);
+
+            if(newScore == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                new { Message = "Echec lors de la creation du nouveau score." });
+            }
+            return newScore;
         }
 
         //// DELETE: api/Scores/5
@@ -161,10 +120,5 @@ namespace TP4.Controllers
         //
         //    return NoContent();
         //}
-
-        private bool ScoreExists(int id)
-        {
-            return (_context.Score?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
     }
 }

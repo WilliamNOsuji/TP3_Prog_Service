@@ -21,15 +21,8 @@ export class ScoreComponent implements OnInit {
   async ngOnInit() {
 
     this.userIsConnected = sessionStorage.getItem("token") != null;
-
-    let httpOptions = {
-      headers : new HttpHeaders({
-        'Content-Type' : 'application/json',
-        'Authorization' : 'Bearer ' + this.userIsConnected
-      })
-    };
-
-    let x = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetMyScores", httpOptions))
+    
+    let x = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetMyScores"))
     console.log(x)
     this.myScores = x;
 

@@ -15,6 +15,8 @@ builder.Services.AddDbContext<TP4Context>(options =>
     options.UseLazyLoadingProxies();
 });
 
+builder.Services.AddScoped<ScoreService>();
+
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<TP4Context>();
 builder.Services.Configure<IdentityOptions>(options =>
 {
