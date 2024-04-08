@@ -101,7 +101,6 @@ namespace TP4.Controllers
         // POST: api/Scores
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult<Score>> PostScore (Score score)
         {
             if (_context.Score == null)

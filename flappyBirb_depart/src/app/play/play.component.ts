@@ -25,6 +25,7 @@ export class PlayComponent implements OnInit, OnDestroy{
   scoreTimeValue : string | null = null;
   scoreValue : string | null = null; 
   scoreIsPublic : boolean = false;
+  errorMessage: string | null = null;
 
 
   constructor(public http : HttpClient){}
@@ -76,9 +77,14 @@ export class PlayComponent implements OnInit, OnDestroy{
           false
         );
         console.log(newScore)
-        let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore,httpOptions) )
-        console.log("Score sent successfully:", response);
-      
+        try {
+          let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore,httpOptions) );
+          console.log("Score sent successfully:", response);
+        } catch (error) {
+          // Handle error here
+          console.error("User is not Connected !: ", error);
+          this.errorMessage = "Error sending score: " + error; // Set error message
+        }
       }
       
   }
