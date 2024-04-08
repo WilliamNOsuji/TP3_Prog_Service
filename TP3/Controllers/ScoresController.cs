@@ -35,7 +35,16 @@ namespace TP4.Controllers
           {
               return NotFound();
           }
-            return await _context.Score.ToListAsync();
+            var top10Scores = await _context.Score
+                                     .Where(s => s.IsPublic == true)
+                                     .ToListAsync();
+
+            if (top10Scores == null || top10Scores.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return top10Scores;
         }
 
         // GET: api/Scores

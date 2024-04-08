@@ -73,7 +73,7 @@ export class PlayComponent implements OnInit, OnDestroy{
           this.scoreDate,
           parseFloat(this.scoreTimeValue),
           parseInt(this.scoreValue),
-          this.scoreIsPublic
+          false
         );
         console.log(newScore)
         let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore,httpOptions) )
