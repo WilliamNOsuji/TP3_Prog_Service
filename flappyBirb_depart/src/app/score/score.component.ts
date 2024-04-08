@@ -45,22 +45,14 @@ export class ScoreComponent implements OnInit {
   async changeScoreVisibility(score : Score){
     let id = score.id;
 
-    this.userIsConnected = sessionStorage.getItem("token") != null;
-
-    let httpOptions = {
-      headers : new HttpHeaders({
-        'Content-Type' : 'application/json',
-        'Authorization' : 'Bearer ' + this.userIsConnected
-      })
-    };
     if(!score.isPublic){
       let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,true)
-      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore, httpOptions))
+      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore))
       console.log(z)
     }
     else{
       let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,false)
-      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore, httpOptions))
+      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore))
       console.log(z)
     }
     
