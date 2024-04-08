@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { PlayComponent } from './play/play.component';
 import { ScoreComponent } from './score/score.component';
 import { Round_00Pipe } from './pipes/round_00.pipe';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './intercepteur/auth.interceptor';
 
 @NgModule({
   declarations: [				

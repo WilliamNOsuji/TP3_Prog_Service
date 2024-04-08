@@ -12,8 +12,8 @@ using TP4.Data;
 namespace TP4.Migrations
 {
     [DbContext(typeof(TP4Context))]
-    [Migration("20240406142843_Initial")]
-    partial class Initial
+    [Migration("20240408152429_InitialWithSeed")]
+    partial class InitialWithSeed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -190,6 +190,48 @@ namespace TP4.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Score");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = "2024-04-08",
+                            IsPublic = true,
+                            Pseudo = "user1",
+                            ScoreValue = 45,
+                            Temps = 40f,
+                            UserId = "11111111-1111-1111-1111-111111111111"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = "2024-04-08",
+                            IsPublic = false,
+                            Pseudo = "user1",
+                            ScoreValue = 75,
+                            Temps = 80f,
+                            UserId = "11111111-1111-1111-1111-111111111111"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Date = "2024-04-08",
+                            IsPublic = true,
+                            Pseudo = "user2",
+                            ScoreValue = 45,
+                            Temps = 30f,
+                            UserId = "11111111-1111-1111-1111-111111111112"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Date = "2024-04-08",
+                            IsPublic = false,
+                            Pseudo = "user2",
+                            ScoreValue = 8,
+                            Temps = 10f,
+                            UserId = "11111111-1111-1111-1111-111111111112"
+                        });
                 });
 
             modelBuilder.Entity("TP4.Models.User", b =>
@@ -255,6 +297,40 @@ namespace TP4.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "11111111-1111-1111-1111-111111111111",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c242fe1b-6a46-4eb0-a9b9-a4593f580470",
+                            Email = "user1@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER1@GMAIL.COM",
+                            NormalizedUserName = "USER1",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHnIRYEjj5qlj/yVLkvAVSHSW5XIOoRavxhnOOxgld39xqfpbv0yxBs+KDwIKZgNmA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8bf31a66-bcfa-47d4-acfc-6c46e141a046",
+                            TwoFactorEnabled = false,
+                            UserName = "User1"
+                        },
+                        new
+                        {
+                            Id = "11111111-1111-1111-1111-111111111112",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "db1632d8-3289-4b7a-aec4-76eed77a68fc",
+                            Email = "user2@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER2@GMAIL.COM",
+                            NormalizedUserName = "USER2",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN8jYukzPuLtfUn3Qr82pJxTNHEy3UUzcjMLVGdctBAwOSZQJy8rRfQoRTKpmFEoig==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b097cada-35e1-414d-be6d-cd2f5b6639ab",
+                            TwoFactorEnabled = false,
+                            UserName = "User2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

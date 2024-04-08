@@ -53,12 +53,17 @@ export class ScoreComponent implements OnInit {
         'Authorization' : 'Bearer ' + this.userIsConnected
       })
     };
-
-    let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,true)
-
-    let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore, httpOptions))
-    console.log(z)
-
+    if(!score.isPublic){
+      let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,true)
+      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore, httpOptions))
+      console.log(z)
+    }
+    else{
+      let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,false)
+      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore, httpOptions))
+      console.log(z)
+    }
+    
     // Reload the page after the change is made
     window.location.reload();
   }
