@@ -28,6 +28,8 @@ namespace TP4.Data
 
             return await _context.Score
                               .Where(s => s.IsPublic == true)
+                              .OrderByDescending(x => x.ScoreValue)
+                              .Take(10)
                               .ToListAsync();
         }
 

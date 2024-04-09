@@ -5,6 +5,7 @@ import { lastValueFrom } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { publishFacade } from '@angular/compiler';
 import { LoginDTO } from '../models/loginDTO';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
   loginUsername : string = "";
   loginPassword : string = "";
 
-  constructor(public route : Router, public http : HttpClient) { }
+  constructor(public route : Router, public http : HttpClient, public httpRequest : HttpService) { }
 
   ngOnInit() {
   }
@@ -36,13 +37,13 @@ export class LoginComponent implements OnInit {
       this.loginUsername,
       this.loginPassword
     )
-    const response = await lastValueFrom(this.http.post<any>(this.domain + "api/Users/Login", loginDTO));
-    console.log(response)
-    // Store token in session storage
-    sessionStorage.setItem('token', response.token);
-    console.log("User has Logged In Successfully !!!")
-    console.log("This is the assigned Token (Without the Expiration DateTime): " + sessionStorage.getItem("token")?.toString())
+    //const response = await lastValueFrom(this.http.post<any>(this.domain + "api/Users/Login", loginDTO));
+    //console.log(response)
+    await this.httpRequest.loginIn(loginDTO);
 
+    // Store token in session storage
+    console.log("User has Logged In Successfully !!!")
+    
     // Redirection si la connexion a réussi :
     this.route.navigate(["/play"]);
   }
@@ -54,8 +55,8 @@ export class LoginComponent implements OnInit {
       this.registerPassword,
       this.registerPasswordConfirm
     );
-    let x = await lastValueFrom(this.http.post<RegisterDTO>( this.domain + "api/Users/Register", registerDTO));
-    console.log(x)
+    //let x = await lastValueFrom(this.http.post<RegisterDTO>( this.domain + "api/Users/Register", registerDTO));
+    await this.httpRequest.register(registerDTO);
     console.log("User has been Registered Successfully !!!")
   }
 }

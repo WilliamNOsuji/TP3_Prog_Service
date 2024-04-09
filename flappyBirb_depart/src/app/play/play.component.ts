@@ -3,6 +3,7 @@ import { Game } from './gameLogic/game';
 import { Score } from '../models/score';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-play',
@@ -28,7 +29,7 @@ export class PlayComponent implements OnInit, OnDestroy{
   errorMessage: string | null = null;
 
 
-  constructor(public http : HttpClient){}
+  constructor(public http : HttpClient, public httpRequest : HttpService){}
 
   ngOnDestroy(): void {
     // Ceci est crotté mais ne le retirez pas sinon le jeu bug.
@@ -68,8 +69,8 @@ export class PlayComponent implements OnInit, OnDestroy{
         );
         console.log(newScore)
         try {
-          let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore) );
-          console.log("Score sent successfully:", response);
+          //let response = await lastValueFrom(this.http.post<Score>(this.domain + "api/Scores/PostScore",newScore) );
+          await this.httpRequest.addNewScore(newScore);
         } catch (error) {
           // Handle error here
           console.error("User is not Connected !: ", error);

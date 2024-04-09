@@ -23,17 +23,19 @@ export class ScoreComponent implements OnInit {
 
     this.userIsConnected = sessionStorage.getItem("token") != null;
 
-    let x = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetMyScores"))
-    console.log(x)
-    this.myScores = x;
+    //let x = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetMyScores"))
+    //console.log(x)
+    //this.myScores = x;
+    if(this.userIsConnected){
+      let x = await this.httpRequest.getMyScores()
+      this.myScores = x
+    }
 
-    let y = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetPublicScores"))
-    console.log(y)
-    // Sort scores in descending order by scoreValue
-    y.sort((a, b) => b.scoreValue - a.scoreValue);
+    //let y = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetPublicScores"))
+    let y = await this.httpRequest.getPublicScores()
 
     // Take top 10 scores
-    this.publicScores = y.slice(0, 10);
+    this.publicScores = y;
   }
 
   async changeScoreVisibility(score : Score){
@@ -41,13 +43,13 @@ export class ScoreComponent implements OnInit {
 
     if(!score.isPublic){
       let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,true)
-      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore))
-      console.log(z)
+      //let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore))
+      await this.httpRequest.editScoreToPublic(updatedScore)
     }
     else{
       let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,false)
-      let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore))
-      console.log(z)
+      //let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore))
+      await this.httpRequest.editScoreToPrivate(updatedScore)
     }
     
     // Reload the page after the change is made
