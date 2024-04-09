@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Score } from '../models/score';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-score',
@@ -16,12 +17,12 @@ export class ScoreComponent implements OnInit {
   publicScores : Score[] = [];
   userIsConnected : boolean = false;
 
-  constructor(public http : HttpClient) { }
+  constructor(public http : HttpClient, public httpRequest : HttpService) { }
 
   async ngOnInit() {
 
     this.userIsConnected = sessionStorage.getItem("token") != null;
-    
+
     let x = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetMyScores"))
     console.log(x)
     this.myScores = x;
