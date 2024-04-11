@@ -20,7 +20,6 @@ export class HttpService {
     async getMyScores() : Promise<Score[]> {
       let x = await lastValueFrom(this.httpClient.get<Score[]>(this.domain + "api/Scores/GetMyScores"));
       console.log(x)
-
       return x
     }
 

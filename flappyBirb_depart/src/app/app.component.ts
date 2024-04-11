@@ -12,7 +12,6 @@ export class AppComponent {
   logout(){
     console.log("Logout User with this token : " + sessionStorage.getItem("token"))
     // ██ Supprimer le token juste ici ! ██
-
     let darkScreen : HTMLElement | null = document.querySelector("#darkScreen");
     if(darkScreen == null) return;
     darkScreen.style.visibility = this.toggleLogout ? "visible" : "hidden";

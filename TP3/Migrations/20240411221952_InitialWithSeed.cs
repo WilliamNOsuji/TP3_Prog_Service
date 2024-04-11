@@ -180,22 +180,22 @@ namespace TP4.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "11111111-1111-1111-1111-111111111111", 0, "c242fe1b-6a46-4eb0-a9b9-a4593f580470", "user1@gmail.com", false, false, null, "USER1@GMAIL.COM", "USER1", "AQAAAAEAACcQAAAAEHnIRYEjj5qlj/yVLkvAVSHSW5XIOoRavxhnOOxgld39xqfpbv0yxBs+KDwIKZgNmA==", null, false, "8bf31a66-bcfa-47d4-acfc-6c46e141a046", false, "User1" });
+                values: new object[] { "11111111-1111-1111-1111-111111111111", 0, "5efbcd8c-ced6-44e8-88f2-6454522aba0e", "user1@gmail.com", false, false, null, "USER1@GMAIL.COM", "USER1", "AQAAAAEAACcQAAAAEBvSVe9dmtkmTTSLDxxqSTPC6YT/TI6Vnyff63PIpUJRUJK8B/cifWIgegu3tmwygg==", null, false, "028ec3f5-8c6e-4727-a1a5-a0cbf011b700", false, "User1" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "11111111-1111-1111-1111-111111111112", 0, "db1632d8-3289-4b7a-aec4-76eed77a68fc", "user2@gmail.com", false, false, null, "USER2@GMAIL.COM", "USER2", "AQAAAAEAACcQAAAAEN8jYukzPuLtfUn3Qr82pJxTNHEy3UUzcjMLVGdctBAwOSZQJy8rRfQoRTKpmFEoig==", null, false, "b097cada-35e1-414d-be6d-cd2f5b6639ab", false, "User2" });
+                values: new object[] { "11111111-1111-1111-1111-111111111112", 0, "39b5efc4-00c5-483e-8cfc-fd7c4a297b25", "user2@gmail.com", false, false, null, "USER2@GMAIL.COM", "USER2", "AQAAAAEAACcQAAAAEGV1NWKUom1ZJRa4Cbit+YexF2EsDU92jfuVKCZ6s3O630aD7BHxYGz3bj0yuLgaWA==", null, false, "d568bd27-1c29-4a31-b768-a95dac1015e3", false, "User2" });
 
             migrationBuilder.InsertData(
                 table: "Score",
                 columns: new[] { "Id", "Date", "IsPublic", "Pseudo", "ScoreValue", "Temps", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "2024-04-08", true, "user1", 45, 40f, "11111111-1111-1111-1111-111111111111" },
-                    { 2, "2024-04-08", false, "user1", 75, 80f, "11111111-1111-1111-1111-111111111111" },
-                    { 3, "2024-04-08", true, "user2", 45, 30f, "11111111-1111-1111-1111-111111111112" },
-                    { 4, "2024-04-08", false, "user2", 8, 10f, "11111111-1111-1111-1111-111111111112" }
+                    { 1, "2024-04-11", true, "user1", 45, 40f, "11111111-1111-1111-1111-111111111111" },
+                    { 2, "2024-04-11", false, "user1", 75, 80f, "11111111-1111-1111-1111-111111111111" },
+                    { 3, "2024-04-11", true, "user2", 45, 30f, "11111111-1111-1111-1111-111111111112" },
+                    { 4, "2024-04-11", false, "user2", 8, 10f, "11111111-1111-1111-1111-111111111112" }
                 });
 
             migrationBuilder.CreateIndex(

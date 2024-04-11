@@ -20,9 +20,7 @@ export class ScoreComponent implements OnInit {
   constructor(public http : HttpClient, public httpRequest : HttpService) { }
 
   async ngOnInit() {
-
     this.userIsConnected = sessionStorage.getItem("token") != null;
-
     //let x = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetMyScores"))
     //console.log(x)
     //this.myScores = x;
@@ -30,16 +28,13 @@ export class ScoreComponent implements OnInit {
       let x = await this.httpRequest.getMyScores()
       this.myScores = x
     }
-
     //let y = await lastValueFrom(this.http.get<Score[]>(this.domain + "api/Scores/GetPublicScores"))
     let y = await this.httpRequest.getPublicScores()
-
     // Take top 10 scores
     this.publicScores = y;
   }
 
   async changeScoreVisibility(score : Score){
-    let id = score.id;
 
     if(!score.isPublic){
       let updatedScore = new Score(score.id, score.pseudo, score.date,score.temps,score.scoreValue,true)
@@ -51,7 +46,6 @@ export class ScoreComponent implements OnInit {
       //let z = await lastValueFrom(this.http.put<Score>(this.domain + "api/Scores/ChangeScoreVisibility/" + id, updatedScore))
       await this.httpRequest.editScoreToPrivate(updatedScore)
     }
-    
     // Reload the page after the change is made
     window.location.reload();
   }
